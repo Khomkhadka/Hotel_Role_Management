@@ -52,11 +52,13 @@ class RoleController extends Controller implements HasMiddleware
           $validator = Validator::make($request->all(),[
             'display_name'=> 'required|unique:roles|min:3'
         ]);
+        
        
         if ($validator->passes()) {
            $role = Role::create([
             'display_name'=> $request->display_name,
             'name' => Str::slug($request->display_name),
+            
         ]);
           
             if (!empty($request->permission)){
